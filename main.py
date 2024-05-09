@@ -1,4 +1,6 @@
-
+"""
+For learning reason
+"""
 
 def print_string(x, y):
     for number in range(x, y+1):
