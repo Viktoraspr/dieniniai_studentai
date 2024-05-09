@@ -1,0 +1,1 @@
+print('mes dabar spausdiname is init failo')

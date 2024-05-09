@@ -1,0 +1,1 @@
+print('cia dar vienas initas, src')
