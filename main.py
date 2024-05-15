@@ -1,5 +1,3 @@
-import sqlite3
-
 from db_management.sql_queries_create_tables import TABLES, DROP_TABLES
 from db_management.table_data import TRANSMISSION_DATA
 
