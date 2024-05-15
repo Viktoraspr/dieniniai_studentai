@@ -1,42 +1,24 @@
-"""
-For learning reason
+import sqlite3
 
-Another try
+from db_management.sql_queries_create_tables import TABLES, DROP_TABLES
+from db_management.table_data import TRANSMISSION_DATA
 
-Added let's try.
-"""
+# CRUD
 
-def print_string(x, y):
-    for number in range(x, y+1):
-        print(str(number) * number)
+connection = sqlite3.connect("database/mano_duomenu_baze.db")
+cursor = connection.cursor()
 
+from db_management.db import DB
 
-def print_reverse(number):
-    print(' '.join(str(number)[::-1]))
+db = DB()
 
+# for table in DROP_TABLES:
+#     db.drop_table(table=table)
+#
+# for table_query in TABLES:
+#     db.execute_sql_query(table_query)
 
-def print_calculation():
-    for m in range(1, 11):
-        for n in range(1, 11):
-            print(m * n, end=' ')
-        print()
+for data in TRANSMISSION_DATA:
+    db.add_values_to_transmission_table(**data)
 
-
-def return_something(data, deleted_key, nessesary):
-    result_nessesary = {value: data[value] for value in nessesary}
-    for key in deleted_key:
-        del data[key]
-    return result_nessesary, data
-
-
-values = {
-    1: 'vienas',
-    2: 'du',
-    3: 'trys',
-    4: 'keturi',
-}
-
-deleted_key = [3]
-nessesary = [1, 2]
-
-print(return_something(data=values, deleted_key=deleted_key, nessesary=nessesary))
+db.close_connection()
