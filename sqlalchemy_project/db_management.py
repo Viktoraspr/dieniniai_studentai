@@ -1,28 +1,32 @@
-
+from sqlalchemy_project.constants import URL
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from sqlalchemy_project.tables import Product, Customer, Order
 from sqlalchemy_project.constants import URL
-from sqlalchemy_project.tables import Project
 
 
 class DB:
-    def __init__(self):
+    def __init__(self, url=URL):
         self.engine = create_engine(URL)
         Session = sessionmaker(bind=self.engine)
         self.session = Session()
 
-    def get_object_by_id(self, obj: object, id: int):
-        return self.session.query(obj).get(id)
-
-    def add_value_to_project_table(self, name, price):
-        product = Project(name=name, price=price)
-        self.session.add(product)
+    def __add_values_to_DB(self, obj: object):
+        self.session.add(obj)
         self.session.commit()
 
-    def add_values_to_project_table(self, data: list[tuple]):
-        values = []
-        for d in data:
-            values.append(Project(name=d[0], price=d[1]))
-        self.session.add_all(values)
-        self.session.commit()
+    def add_products(self, **kwargs):
+        product = kwargs.get('product')
+        price = kwargs.get('price')
+        ingredients = kwargs.get('ingredients')
+        if not all([product, price, ingredients]):
+            raise ValueError('We should get product, price and ingredients')
+        extra = kwargs.get('extra')
+        product = Product(
+            product=product,
+            price=price,
+            ingredients=ingredients,
+            extra=extra
+        )
+        self.__add_values_to_DB(product)

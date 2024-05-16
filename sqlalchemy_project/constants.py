@@ -1,1 +1,1 @@
-URL = 'sqlite:///database/projects.db'
+URL = 'sqlite:///database/kebabine.db'
