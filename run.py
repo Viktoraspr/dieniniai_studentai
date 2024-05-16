@@ -6,16 +6,18 @@ from sqlalchemy_project.db_management import DB
 
 
 db = DB()
-# db.add_products(
-#     product='Avienos',
-#     price=10.00,
-#     ingredients='lamb, vegetables, baton, onions',
-#     extra='peppers'
-# )
+db.add_products(
+    product='Avienos',
+    price=10.00,
+    ingredients='lamb, vegetables, baton, onions',
+    extra='peppers'
+)
 
 db.add_products(
     product='Avienos',
-    extra='peppers'
+    price=10.99,
+    ingredients='lamb, vegetables, baton, onions',
+    extra='peppers',
 )
 
 
