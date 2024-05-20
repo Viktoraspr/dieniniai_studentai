@@ -2,7 +2,10 @@ from pandas_db.pandas_project import PandasDB
 
 panda_df = PandasDB()
 
+# panda_df.print_info()
 # panda_df.create_transmission_table()
-naujas = panda_df.create_auto_table()
 
-# print(naujas)
+panda_df.merge_transmission_table_with_main_table()
+
+
+
